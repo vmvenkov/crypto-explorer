@@ -312,9 +312,9 @@ body.dark-mode #attribute-table tbody tr:nth-child(even) {
 }
 
 #load-attributes-btn {
-  padding: 9px 21px;
+  padding: 9px 18px;
   font-size: 1.1rem;
-  background-color: #2196f3;
+  background-color: #00008b;
   color: white;
   border: none;
   border-radius: 8px;
