@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crypto Explorer</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Leaflet.js -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+<body>
+
+  <!-- DARK MODE TOGGLE -->
+  <div class="dark-mode-toggle">
+    <label class="switch">
+      <input type="checkbox" id="dark-mode-slider" />
+      <span class="slider round"></span>
+    </label>
+    <span id="mode-label">Light Mode</span>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="sticky">
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#chart">Chart</a></li>
+      <li><a href="#facts">Facts</a></li>
+      <li><a href="#map">Map</a></li>
+      <li><a href="#news">News</a></li>
+    </ul>
+  </nav>
+
+  <!-- HOME SECTION -->
+  <section id="home">
+    <h1>Welcome to Crypto Explorer</h1>
+    <p>Explore global crypto adoption, trends, and education.</p>
+  </section>
+
+  <!-- LINE CHART -->
+  <section id="chart">
+    <h2>Crypto Currency Trends</h2>
+    <label for="currency-select">Select Currency:</label>
+    <select id="currency-select">
+      <option value="BTC">Bitcoin (BTC)</option>
+      <option value="ETH">Ethereum (ETH)</option>
+      <option value="USDT">Tether USDt (USDT)</option>
+      <option value="XRP">Ripple (XRP)</option>
+      <option value="BNB">Binance Coin (BNB)</option>
+      <option value="SOL">Solana (SOL)</option>
+      <option value="USDC">USD Coin (USDC)</option>
+      <option value="DOGE">Dogecoin (DOGE)</option>
+      <option value="ADA">Cardano (ADA)</option>
+      <option value="TRX">TRON (TRX)</option>
+    </select>
+    <div id="currency-info" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+      <img id="currency-icon" src="" alt="" width="32" height="32" style="display: none;">
+      <h3 id="currency-name">Bitcoin (BTC)</h3>
+    </div>    
+    <canvas id="lineChart" width="800" height="400"></canvas>
+  </section>
+
+  <!-- FUN FACTS & QUOTES -->
+  <section id="facts">
+    <div class="info-box-container">
+      <div class="info-box highlight" id="fun-fact-box"></div>
+      <div class="info-box highlight" id="quote-box"></div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE MAP -->
+  <section id="map">
+    <h2>Cryptocurrency Ownership By Country in Europe, December 2023</h2>
+    <label for="metric-select">Select Metric:</label>
+    <select id="metric-select">
+      <option value="bitcoinAdoption">Number of People</option>
+      <option value="bitcoinAdoptionPercentage">Percentage of People</option>
+    </select>
+    <div id="map-container"></div>
+    <!-- 🔽 Add Feature Form -->
+<div id="feature-controls">
+  <h3>Add a Feature</h3>
+  <label for="feature-name">Name:</label>
+  <input type="text" id="feature-name" placeholder="Feature name" />
+  <label for="feature-type">Type:</label>
+  <select id="feature-type">
+    <option value="Point">Point</option>
+    <option value="Polygon">Polygon</option>
+  </select>
+  <button id="add-feature-btn">Add Feature</button>
+</div>
+
+<!-- 🔽 Attribute Table -->
+<!-- ATTRIBUTE TABLE CONTROLS -->
+<div id="attribute-controls">
+  <button id="load-attributes-btn">Load Attribute Table</button>
+  <input type="text" id="search-input" placeholder="Filter by country..." />
+</div>
+
+<!-- ATTRIBUTE TABLE -->
+<div id="attribute-table-wrapper">
+  <h3>Country Attributes</h3>
+  <table id="attribute-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th> <!-- ← was incorrectly "Value" -->
+      <th>Lat</th>  <!-- Add this -->
+      <th>Lon</th>  <!-- Add this -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Populated by JS -->
+  </tbody>
+</table>
+
+</div>
+
+
+
+<!-- 🔽 Geoprocessing Controls -->
+<div id="geoprocessing-tools">
+  <h3>Geoprocessing</h3>
+  <button id="delete-selected-btn">Delete Selected</button>
+  <button id="select-feature-btn">Select Features</button>
+  <button id="buffer-btn">Create Buffer (1km)</button>
+</div>
+
+  </section>
+
+  <!-- NEWS AND TIPS -->
+  <section id="news">
+    <h2>Latest Crypto News & Tips</h2>
+    <div id="news-container" class="info-box-container"></div>
+    <h3>Learning Tips</h3>
+    <div id="tips-container" class="info-box-container"></div>
+  </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 CryptoWorld | University Project by Venko Venkov</p>
+  </footer>
+
+      <!-- Leaflet JS for Map -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+   <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+
+    <!-- Link to JS -->
+    <script src="main1.js"></script>
+
+
+</body>
+</html>
