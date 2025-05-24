@@ -292,6 +292,12 @@ footer {
   vertical-align: middle;
 }
 
+body.dark-mode .legend {
+  background: rgba(30, 30, 30, 0.8); /* darker translucent background */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.7); /* optional: stronger shadow */
+  color: #ddd; /* make text lighter for contrast */
+}
+
 #attribute-table {
   width: 100%;
   border-collapse: separate;
