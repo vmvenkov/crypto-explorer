@@ -312,7 +312,7 @@ body.dark-mode #attribute-table tbody tr:nth-child(even) {
 }
 
 #load-attributes-btn {
-  padding: 12px 24px;
+  padding: 9px 21px;
   font-size: 1.1rem;
   background-color: #2196f3;
   color: white;
@@ -323,7 +323,7 @@ body.dark-mode #attribute-table tbody tr:nth-child(even) {
 }
 
 #load-attributes-btn:hover {
-  background-color: #1976d2;
+  background-color: #00008b;
 }
 
 #attribute-table-wrapper {
