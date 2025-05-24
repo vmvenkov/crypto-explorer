@@ -316,30 +316,29 @@ function updateLegend() {
   legendDiv.innerHTML = html;
 }
 
-  fetch("map.geo.json")
-    .then(response => response.json())
-    .then(data => {
-      geojsonLayer = L.geoJson(data, {
-        style: styleFeature,
-        onEachFeature: (feature, layer) => {
-          const props = feature.properties;
-          const popup = `
-            <strong>${props.name}</strong><br/>
-            Crypto Adoption: ${props.bitcoinAdoption?.toLocaleString("en-US").replace(/,/g, " ") || "N/A"} people<br/>
-            Crypto Adoption Percentage: ${props.bitcoinAdoptionPercentage || "N/A"}%
-          `;
-          layer.bindPopup(popup);
-        }
-      }).addTo(map);
+fetch("map.geo.json")
+  .then(response => response.json())
+  .then(data => {
+    loadGeoJSON(data); // <== This populates tableFeatures
 
-      updateLegend(); // Initial call after data load
-
-      document.getElementById("metric-select").addEventListener("change", e => {
-        metric = e.target.value;
-        updateMapColors();
-        updateLegend();
-      });
+    geojsonLayer.eachLayer(layer => {
+      const props = layer.feature.properties;
+      const popup = `
+        <strong>${props.name}</strong><br/>
+        Crypto Adoption: ${props.bitcoinAdoption?.toLocaleString("en-US").replace(/,/g, " ") || "N/A"} people<br/>
+        Crypto Adoption Percentage: ${props.bitcoinAdoptionPercentage || "N/A"}%
+      `;
+      layer.bindPopup(popup);
+      layer.setStyle(styleFeature(layer.feature));
     });
+
+    updateLegend(); // call legend
+    document.getElementById("metric-select").addEventListener("change", e => {
+      metric = e.target.value;
+      updateMapColors();
+      updateLegend();
+    });
+  });
 
   function updateMapColors() {
     geojsonLayer.eachLayer(layer => {
