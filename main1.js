@@ -369,15 +369,20 @@ function populateTable() {
   tableFeatures.forEach(({ feature, layer }, index) => {
     const tr = document.createElement("tr");
 
+    const people = feature.properties.bitcoinAdoption;
+    const percent = feature.properties.bitcoinAdoptionPercentage;
+
     tr.innerHTML = `
       <td>${feature.properties.name}</td>
-      <td>${feature.properties.value || 'N/A'}</td>
+      <td>${people != null ? people.toLocaleString("en-US").replace(/,/g, " ") : "N/A"}</td>
+      <td>${percent != null ? percent + "%" : "N/A"}</td>
       <td>
         <button class="zoom-btn" data-idx="${index}">Zoom</button>
         <button class="edit-btn" data-idx="${index}">Edit</button>
         <button class="delete-btn" data-idx="${index}">Delete</button>
       </td>
     `;
+
 
     tbody.appendChild(tr);
   });
