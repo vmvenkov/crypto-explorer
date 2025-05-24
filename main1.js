@@ -427,7 +427,14 @@ document.getElementById("search-input").addEventListener("input", function () {
 });
 
 document.getElementById("load-attributes-btn").addEventListener("click", () => {
-  populateTable();
+  populateTable(); // Fill the table dynamically
+
+  const wrapper = document.getElementById("attribute-table-wrapper");
+  if (wrapper.style.display === "none" || wrapper.style.display === "") {
+    wrapper.style.display = "block"; // Show table
+  } else {
+    wrapper.style.display = "none"; // Hide table if it's visible
+  }
 });
 
 
