@@ -368,10 +368,10 @@ function populateTable() {
 
   tableFeatures.forEach(({ feature, layer }, index) => {
     const tr = document.createElement("tr");
-
+    
     const people = feature.properties.bitcoinAdoption;
     const percent = feature.properties.bitcoinAdoptionPercentage;
-
+    
     tr.innerHTML = `
       <td>${feature.properties.name}</td>
       <td>${people != null ? people.toLocaleString("en-US").replace(/,/g, " ") : "N/A"}</td>
@@ -401,10 +401,19 @@ document.querySelector("#attribute-table").addEventListener("click", function (e
     tableFeatures.splice(idx, 1);
     populateTable();
   } else if (e.target.classList.contains("edit-btn")) {
-    const newName = prompt("New country name:", feature.properties.name);
-    const newVal = prompt("New value:", feature.properties.value);
-    if (newName !== null) feature.properties.name = newName;
-    if (newVal !== null) feature.properties.value = newVal;
+  const newName = prompt("New country name:", feature.properties.name);
+  const newPeople = prompt("New number of people:", feature.properties.bitcoinAdoption);
+  const newPercent = prompt("New percentage of population:", feature.properties.bitcoinAdoptionPercentage);
+
+  if (newName !== null) feature.properties.name = newName;
+
+  if (newPeople !== null && !isNaN(newPeople)) {
+    feature.properties.bitcoinAdoption = parseInt(newPeople);
+  }
+
+  if (newPercent !== null && !isNaN(newPercent)) {
+    feature.properties.bitcoinAdoptionPercentage = parseFloat(newPercent);
+  }
     populateTable();
   }
 });
@@ -637,7 +646,7 @@ function onEachFeature(feature, layer) {
   const popupContent = `
     <b>${props.name}</b><br/>
     Тип: ${props.type}<br/>
-    <button onclick="editFeature('${props.name}')">✏️ Редактирай</button>
+    <button onclick="Feature('${props.name}')">✏️ Редактирай</button>
   `;
 
   layer.bindPopup(popupContent);
